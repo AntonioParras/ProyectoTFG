@@ -1,20 +1,22 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <main-component />
-    </div>
-    <router-view />
+    <MainMenuComponent />
   </div>
 </template>
 <script>
-import MainComponent from "@/components/MainComponent.vue";
+//import Home from "@/views/Home.vue";
+//import LoginComponent from "@/components/LoginComponent.vue";
+import MainMenuComponent from "@/components/MainMenuComponent.vue";
 
 export default {
-  components: { MainComponent }
+  components: { MainMenuComponent }
 };
 </script>
 <style lang="scss">
 #app {
   text-align: center;
+}
+* {
+  box-sizing: border-box;
 }
 </style>

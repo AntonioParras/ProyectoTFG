@@ -1,33 +1,38 @@
 <template>
   <div>
-    <main-menu-component />
     <div class="landingContent">
       <h1>Welcome to Pender</h1>
-      <h3>Empieza a dar likes</h3>
+      <h2>Empieza a dar likes</h2>
       <div><button class="login-btn">Iniciar sesión</button></div>
       <br />
       <div><button class="create-btn">Crear cuenta</button></div>
-      <img src="../assets/logo-demo-igca.png" />
+      <img class="logo-img" src="../assets/logo-demo-igca.png" />
     </div>
   </div>
 </template>
 
 <script>
-import MainMenuComponent from "@/components/MainMenuComponent.vue";
-export default {
-  components: { MainMenuComponent }
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
+h1 {
+  font-size: 4em;
+}
+.logo-img {
+  margin-top: 2%;
+  width: 300px;
+  height: 300px;
+}
 .landingContent {
+  font-family: "Raleway", sans-serif;
   background-color: white;
   height: 800px;
   border-radius: 10px;
   padding-top: 5%;
 
   .login-btn {
-    font-family: Arial, monospace;
+    font-family: "Raleway", sans-serif;
     background: #bbff00;
     color: #1d1d1d;
     cursor: pointer;
@@ -69,7 +74,7 @@ export default {
     }
   }
   .create-btn {
-    font-family: Hack, monospace;
+    font-family: "Raleway", sans-serif;
     background: #d3d3d3;
     color: #2c2c2c;
     cursor: pointer;

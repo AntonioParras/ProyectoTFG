@@ -3,16 +3,14 @@
     <div v-if="logeado">
       <p>Estas logeao</p>
     </div>
-    <div v-else>
-      <login-component></login-component>
-    </div>
+    <div v-else></div>
   </div>
 </template>
 
 <script>
-import LoginComponent from "@/components/LoginComponent.vue";
+//import LoginComponent from "@/components/LoginComponent.vue";
 export default {
-  components: { LoginComponent },
+  //components: { LoginComponent },
   data() {
     return {
       logeado: false
@@ -22,9 +20,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-  div {
-     text-align: center;
-  }
-
+div {
+  text-align: center;
+}
 </style>

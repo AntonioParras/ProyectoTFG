@@ -3,10 +3,13 @@
     <nav class="menu-bar">
       <ul>
         <li v-for="(option, index) in menuOptions" :key="index">
-          <a>{{ option.name }}</a>
+          <router-link class="router-link" :to="option.name">{{
+            option.name
+          }}</router-link>
         </li>
       </ul>
     </nav>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -26,6 +29,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.router-link {
+  text-decoration: none;
+  color: grey;
+}
 .menu-bar {
   border-radius: 25px;
   height: fit-content;
