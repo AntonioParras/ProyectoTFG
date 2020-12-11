@@ -1,6 +1,5 @@
 <template>
   <div class="login-container">
-    <main-menu-component class="main-menu-component"></main-menu-component>
     <div class="login">
       <p class="header-login">Inicia sesión</p>
       <form class="login-form" action="">
@@ -10,16 +9,16 @@
         ><input type="password" placeholder="Introduce tu contraseña" /><br />
       </form>
       <button class="login-btn">Iniciar sesión</button>
-      <p class="redirect">¿No tienes cuenta? Crea una <a href="">aquí</a></p>
+      <p class="redirect">
+        ¿No tienes cuenta? Crea una
+        <router-link to="/sign_up">aquí</router-link>
+      </p>
     </div>
   </div>
 </template>
 
 <script>
-import MainMenuComponent from "@/components/MainMenuComponent.vue";
-export default {
-  components: { MainMenuComponent }
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
@@ -65,11 +64,11 @@ export default {
   grid-column: 2/2;
   background: lightgrey;
   width: 300px;
-  height: 80%;
+  height: 90%;
   text-align: center;
   margin-left: 20%;
   margin-right: 20%;
-  margin-top: 20%;
+  margin-top: 10%;
   border-radius: 10px;
 }
 
@@ -134,6 +133,14 @@ export default {
       transition: all 0.5s;
       color: #ffffff;
     }
+  }
+}
+
+@media screen and (max-width: 515px) {
+  .login {
+    margin-left: 5%;
+    margin-right: 10%;
+    width: 100%;
   }
 }
 </style>

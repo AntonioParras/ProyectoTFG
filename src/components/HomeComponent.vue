@@ -1,16 +1,19 @@
 <template>
-  <div>
-    <div v-if="logeado">
-      <p>Estas logeao</p>
-    </div>
-    <div v-else></div>
+  <div class="home">
+    <div v-if="!logeado"><LandingComponent class="home-main-content" /></div>
+    <div v-else>ESTAS LOGEADO</div>
+    <FooterComponent class="home-footer" />
   </div>
 </template>
 
 <script>
-//import LoginComponent from "@/components/LoginComponent.vue";
+import LandingComponent from "@/components/LandingComponent.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
 export default {
-  //components: { LoginComponent },
+  components: {
+    LandingComponent,
+    FooterComponent
+  },
   data() {
     return {
       logeado: false
@@ -20,7 +23,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div {
-  text-align: center;
+.home {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  //grid-row: 10px;
+}
+.home-main-menu {
+  grid-row: 1/1;
+}
+.home-main-content {
+  grid-row: 1/1;
+}
+.home-footer {
+  grid-row: 2/2;
 }
 </style>

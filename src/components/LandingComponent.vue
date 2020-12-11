@@ -3,9 +3,17 @@
     <div class="landingContent">
       <h1>Welcome to Pender</h1>
       <h2>Empieza a dar likes</h2>
-      <div><button class="login-btn">Iniciar sesión</button></div>
+      <div>
+        <router-link to="/login"
+          ><button class="login-btn">Iniciar sesión</button></router-link
+        >
+      </div>
       <br />
-      <div><button class="create-btn">Crear cuenta</button></div>
+      <div>
+        <router-link to="/sign_up"
+          ><button class="create-btn">Crear cuenta</button></router-link
+        >
+      </div>
       <img class="logo-img" src="../assets/logo-demo-igca.png" />
     </div>
   </div>
