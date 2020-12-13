@@ -9,6 +9,8 @@ import SignUp from "@/views/SignUp.vue";
 import AddDog from "@/views/AddDog.vue";
 import Settings from "@/views/Settings.vue";
 import YourDogs from "@/views/YourDogs.vue";
+import Play from "@/views/Play.vue";
+import Matches from "@/views/Matches.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -51,6 +53,14 @@ const routes = [
   {
     path: "/your_dogs",
     component: YourDogs
+  },
+  {
+    path: "/play",
+    component: Play
+  },
+  {
+    path: "/matches",
+    component: Matches
   }
 ];
 

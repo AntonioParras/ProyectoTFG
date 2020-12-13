@@ -1,67 +1,40 @@
-/* eslint-disable vue/no-side-effects-in-computed-properties */
 <template>
   <div>
-    <div class="home-container">
-      <nav class="menu-bar">
-        <ul>
-          <li
-            v-for="(option, index) in menuOptionsHome"
-            :key="index"
-            @click="print(index)"
-          >
-            <router-link class="router-link" :to="option.ruta">{{
-              option.name
-            }}</router-link>
-          </li>
-        </ul>
-      </nav>
-      <div class="home-window">
-        <AddDogComponent v-show="addDogBool" />
+    <!-- div class="home-container" -->
+    <nav class="menu-bar">
+      <ul>
+        <li v-for="(option, index) in menuOptionsHome" :key="index">
+          <router-link class="router-link" :to="option.ruta">{{
+            option.name
+          }}</router-link>
+        </li>
+      </ul>
+    </nav>
+    <div class="home-window">
+      <!--AddDogComponent v-show="addDogBool" />
         <SettingsComponent v-show="settingsBool" />
-        <YourDogsComponent v-show="yourDogsBool" />
-      </div>
+        <YourDogsComponent v-show="yourDogsBool" /-->
     </div>
-    <FooterComponent class="home-footer" />
+    <!--/div-->
   </div>
 </template>
 
 <script>
-import AddDogComponent from '@/components/AddDogComponent.vue';
-import FooterComponent from '@/components/FooterComponent.vue';
-import SettingsComponent from '@/components/SettingsComponent.vue';
-import YourDogsComponent from '@/components/YourDogsComponent.vue';
+// import AddDogComponent from '@/components/AddDogComponent.vue';
+// import SettingsComponent from '@/components/SettingsComponent.vue';
+// import YourDogsComponent from '@/components/YourDogsComponent.vue';
+
 export default {
-  components: { AddDogComponent, SettingsComponent, YourDogsComponent, FooterComponent },
   data() {
     return {
       menuOptionsHome: [
         { name: "Añadir perro", ruta: "/add_dog" },
         { name: "Ajustes", ruta: "/settings" },
         { name: "Tus perros", ruta: "/your_dogs" }
-      ],
-      addDogBool: false,
-      settingsBool: false,
-      yourDogsBool: false,
+      ]
     };
   },
-  methods: {
-    print(index) {
-      if (index == 0) {
-        this.addDogBool = true;
-        this.settingsBool = false;
-        this.yourDogsBool = false;
-      } else if (index == 1) {
-        this.addDogBool = false;
-        this.settingsBool = true;
-        this.yourDogsBool = false;
-      } else if (index == 2) {
-        this.addDogBool = false;
-        this.settingsBool = false;
-        this.yourDogsBool = true;
-      }
-      console.log(index)
-    }
-  }
+  methods: {}
 };
 </script>
 

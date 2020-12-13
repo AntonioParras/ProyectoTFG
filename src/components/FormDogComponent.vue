@@ -2,7 +2,7 @@
   <div>
     <div>
       <div class="form-box">
-        <h1>Regístrate</h1>
+        <h1>Añade tu perro</h1>
 
         <form @submit.prevent="onSubmitDo">
           <hr />
@@ -26,9 +26,22 @@
             <option value="h">Hembra</option>
           </select>
           <label class="icon"><i class="fas fa-sort-numeric-up-alt"></i></label>
-          <input ref="edadP" v-model="edad" type="number" name="name" placeholder="Edad" required />
+          <input
+            ref="edadP"
+            v-model="edad"
+            type="number"
+            name="name"
+            placeholder="Edad"
+            required
+          />
           <label class="icon"><i class="fas fa-weight"></i></label>
-          <input v-model="peso" type="number" name="name" placeholder="Peso" required />
+          <input
+            v-model="peso"
+            type="number"
+            name="name"
+            placeholder="Peso"
+            required
+          />
           <label class="icon"><i class="fas fa-camera"></i></label>
           <input type="file" name="name" required />
           <label class="icon-textarea" for="name">Descripción</label>
@@ -38,7 +51,7 @@
             required
           ></textarea>
           <button @click="comprobarDatos" class="add-btn">
-            Crea tu cuenta
+            Añadir
           </button>
         </form>
         <div v-if="errors.lengt != 0">
@@ -60,7 +73,14 @@ export default {
       peso: "",
       descripcion: "",
       errors: [],
-      datos : {nombre:"",sexo:"",raza:"",edad:"",peso:"",descripcion:""}
+      datos: {
+        nombre: "",
+        sexo: "",
+        raza: "",
+        edad: "",
+        peso: "",
+        descripcion: ""
+      }
     };
   },
   methods: {
@@ -82,31 +102,27 @@ export default {
           this.errors.push("*-El nombre no puede contener números.");
         }
       }
-      if (this.edad!="" && (this.edad<1 || this.edad>20)) {
-          this.errors.push("*-Introduce una edad válida. (desde 1 año hasta 20)")
+      if (this.edad != "" && (this.edad < 1 || this.edad > 20)) {
+        this.errors.push("*-Introduce una edad válida. (desde 1 año hasta 20)");
       }
-      if (this.peso!="" && (this.peso<1 || this.peso>80)){
-          this.errors.push("*-Introduce un peso válido. (desde 1 kg hasta 80)")
+      if (this.peso != "" && (this.peso < 1 || this.peso > 80)) {
+        this.errors.push("*-Introduce un peso válido. (desde 1 kg hasta 80)");
       }
       if (this.errors.length == 0) {
-          this.guardarDatos();
+        this.guardarDatos();
       }
-      
-      
     },
-    guardarDatos(){
-        
-            this.datos.nombre = this.nombre;
-            this.datos.sexo = this.sexo;
-            this.datos.raza = this.raza;
-            this.datos.edad = this.edad;
-            this.datos.peso = this.peso;
-            this.datos.descripcion = this.descripcion;
-            console.log(this.datos)
-        
+    guardarDatos() {
+      this.datos.nombre = this.nombre;
+      this.datos.sexo = this.sexo;
+      this.datos.raza = this.raza;
+      this.datos.edad = this.edad;
+      this.datos.peso = this.peso;
+      this.datos.descripcion = this.descripcion;
+      console.log(this.datos);
     },
-    onSubmitDo(){
-      console.log("no enviado")
+    onSubmitDo() {
+      console.log("no enviado");
     }
   }
 };
@@ -126,8 +142,8 @@ p {
   color: #4c4c4c;
 }
 
-p{
-    color:red;
+p {
+  color: red;
 }
 h1 {
   font-size: 32px;
@@ -194,7 +210,7 @@ input[type="password"] {
   width: 30px;
   background-color: #3a57af;
   padding: 9px 30px 8px 15px;
-  margin-left: 15px;
+  margin-left: 30px;
   -webkit-border-radius: 4px 0px 0px 4px;
   -moz-border-radius: 4px 0px 0px 4px;
   border-radius: 4px 0px 0px 4px;

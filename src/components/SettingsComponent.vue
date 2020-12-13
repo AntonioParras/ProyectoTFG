@@ -73,7 +73,7 @@
           <option value="m">Macho</option>
           <option value="h">Hembra</option>
         </select>
-        <label class="icon"><i class="fas fa-sort-numeric-up-alt"></i></label>
+        <label class="icon"><i class="fas fa-sort-numeric-up"></i></label>
         <input
           v-model="edadMin"
           type="range"
@@ -82,8 +82,8 @@
           step="1"
           required
         />
+        <label class="icon"><i class="fas fa-sort-numeric-up-alt"></i></label>
         <input
-          class="range-max"
           v-model="edadMax"
           type="range"
           min="1"
@@ -101,8 +101,8 @@
           step="1"
           required
         />
+        <label class="icon"><i class="fas fa-weight"></i></label>
         <input
-          class="range-max"
           v-model="pesoMax"
           type="range"
           min="1"
@@ -150,7 +150,7 @@ export default {
       },
       preferenciasUsuario: {
         sexo: "",
-        razas:[],
+        razas: [],
         pesoMin: "",
         pesoMax: "",
         edadMin: "",
@@ -182,13 +182,13 @@ export default {
       if (this.sexo == "") {
         this.errorsPref.push("*-Selecciona el sexo.");
       }
-      if (this.raza1== "" && this.raza2=="" && this.raza3=="") {
+      if (this.raza1 == "" && this.raza2 == "" && this.raza3 == "") {
         this.errorsPref.push("*-Selecciona al menos una raza.");
       }
-      if (this.edadMin=="" || this.edadMax==""){
+      if (this.edadMin == "" || this.edadMax == "") {
         this.errorsPref.push("*-Selecciona un rango de edades.");
       }
-      if (this.pesoMin=="" || this.pesoMax==""){
+      if (this.pesoMin == "" || this.pesoMax == "") {
         this.errorsPref.push("*-Selecciona un rango de peso.");
       }
       if (this.errorsPref.length == 0) {
@@ -203,9 +203,15 @@ export default {
     },
     guardarPreferencias() {
       this.preferenciasUsuario.sexo = this.sexo;
-      if (this.raza1!=""){this.preferenciasUsuario.razas.push(this.raza1);}
-      if (this.raza2!=""){this.preferenciasUsuario.razas.push(this.raza2);}
-      if (this.raza3!=""){this.preferenciasUsuario.razas.push(this.raza3);}
+      if (this.raza1 != "") {
+        this.preferenciasUsuario.razas.push(this.raza1);
+      }
+      if (this.raza2 != "") {
+        this.preferenciasUsuario.razas.push(this.raza2);
+      }
+      if (this.raza3 != "") {
+        this.preferenciasUsuario.razas.push(this.raza3);
+      }
       this.preferenciasUsuario.edadMin = this.edadMin;
       this.preferenciasUsuario.edadMax = this.edadMax;
       this.preferenciasUsuario.pesoMin = this.pesoMin;
@@ -272,11 +278,9 @@ hr {
 
 input[type="text"],
 input[type="password"],
-input[type="number"],
 input[type="file"],
 input[type="email"],
 input[type="range"],
-textarea,
 select {
   width: 80%;
   height: 35px;
@@ -304,13 +308,12 @@ input[type="file"] {
 .range-max {
   margin-left: 60px;
 }
-.icon,
-.icon-textarea {
+.icon {
   display: inline-block;
   width: 30px;
   background-color: #3a57af;
   padding: 9px 30px 8px 15px;
-  margin-left: 15px;
+  margin-left: 30px;
   -webkit-border-radius: 4px 0px 0px 4px;
   -moz-border-radius: 4px 0px 0px 4px;
   border-radius: 4px 0px 0px 4px;
@@ -319,22 +322,6 @@ input[type="file"] {
   -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
   border: solid 0px #cbc9c9;
-}
-.icon-textarea {
-  width: 80%;
-  margin-top: 10px;
-  border-radius: 4px 4px 4px 4px;
-  margin-left: 20px;
-  font-family: "Raleway", sans-serif;
-}
-textarea {
-  width: 80%;
-  margin-left: 30px;
-  border-radius: 4px 4px 4px 4px;
-  margin-bottom: 20px;
-  height: 100px;
-  resize: none;
-  font-family: "Raleway", sans-serif;
 }
 .btn {
   font-family: "Raleway", sans-serif;
@@ -355,8 +342,8 @@ textarea {
     font-family: "Font Awesome 5 Free";
     font-weight: 600;
     position: absolute;
-    left: 90%;
-    top: 54%;
+    left: 93%;
+    top: 50%;
     right: 0;
     bottom: 0;
     opacity: 0;
@@ -383,13 +370,31 @@ a.button:hover {
   -moz-box-shadow: none;
   box-shadow: none;
 }
+.home-container,
+.home-window {
+  margin: 20px auto;
+  -webkit-border-radius: 8px 8px;
+  -moz-border-radius: 8px 8px;
+  border-radius: 8px 8px;
+  background-color: lightblue;
+  //-webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+  //-moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+  //box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+  //border: solid 1px #cbc9c9;
+}
+.home-container {
+  width: 90%;
+  height: 100%;
+  min-height: 1000px;
+  border: solid 1px #cbc9c9;
+  -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+  -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+}
 @media screen and (max-width: 426px) {
   .btn {
-
-  font-size: 1vw;
-
-}
-
+    font-size: 1vw;
+  }
 }
 @media screen and (max-width: 1201px) {
   .range-max {
