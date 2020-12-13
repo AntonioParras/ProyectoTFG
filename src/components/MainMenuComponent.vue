@@ -1,12 +1,20 @@
 <template>
   <div>
     <nav class="menu-bar">
-      <ul>
-        <li v-for="(option, index) in menuOptions" :key="index">
+      <ul v-if="!logeado">
+        <li v-for="(option, index) in menuOptionsNoLog" :key="index">
           <router-link class="router-link" :to="option.name">{{
             option.name
           }}</router-link>
         </li>
+      </ul>
+      <ul v-else>
+        <li v-for="(option, index) in menuOptionsLog" :key="index">
+          <router-link class="router-link" :to="option.name">{{
+            option.name
+          }}</router-link>
+        </li>
+        <li><i :class="iconoLogOut"></i></li>
       </ul>
     </nav>
     <router-view></router-view>
@@ -17,12 +25,20 @@
 export default {
   data() {
     return {
-      menuOptions: [
+      menuOptionsNoLog: [
         { name: "Home" },
         { name: "Match" },
         { name: "Adoption" },
         { name: "About" }
-      ]
+      ],
+      menuOptionsLog: [
+        { name: "Home" },
+        { name: "Match" },
+        { name: "Adoption" },
+        { name: "About" }
+      ],
+      logeado: false,
+      iconoLogOut: "fas fa-power-off"
     };
   }
 };
@@ -31,7 +47,10 @@ export default {
 <style lang="scss" scoped>
 .router-link {
   text-decoration: none;
-  color: grey;
+  color: white;
+  &:hover {
+    color: black;
+  }
 }
 .menu-bar {
   border-radius: 25px;
@@ -69,10 +88,6 @@ export default {
         z-index: -1;
         transition: 0.2s;
         border-radius: 25px;
-        // a{
-        //     text-decoration: none;
-        //     color:white;
-        // }
       }
       &:hover {
         &::before {

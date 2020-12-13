@@ -6,11 +6,18 @@ import Adoption from "@/views/Adoption.vue";
 import About from "@/views/About.vue";
 import Login from "@/views/Login.vue";
 import SignUp from "@/views/SignUp.vue";
+import AddDog from "@/views/AddDog.vue";
+import Settings from "@/views/Settings.vue";
+import YourDogs from "@/views/YourDogs.vue";
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/home",
+    component: Home
+  },
+  {
+    path: "/",
     component: Home
   },
   {
@@ -32,6 +39,18 @@ const routes = [
   {
     path: "/sign_up",
     component: SignUp
+  },
+  {
+    path: "/add_dog",
+    component: AddDog
+  },
+  {
+    path: "/settings",
+    component: Settings
+  },
+  {
+    path: "/your_dogs",
+    component: YourDogs
   }
 ];
 
