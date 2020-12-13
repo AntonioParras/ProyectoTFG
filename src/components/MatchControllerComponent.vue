@@ -41,7 +41,7 @@ export default {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   align-items: center;
-  padding: 0px 20%;
+  padding: 0px 10%;
   margin: 50px 20px 50px 20px;
   ul {
     padding-inline-start: 0px;

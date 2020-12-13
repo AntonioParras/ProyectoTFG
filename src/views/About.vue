@@ -1,11 +1,16 @@
 <template>
   <div>
-    about
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      dato: ""
+    };
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>

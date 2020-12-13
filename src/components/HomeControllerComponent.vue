@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- div class="home-container" -->
     <nav class="menu-bar">
       <ul>
         <li v-for="(option, index) in menuOptionsHome" :key="index">
@@ -10,20 +9,10 @@
         </li>
       </ul>
     </nav>
-    <div class="home-window">
-      <!--AddDogComponent v-show="addDogBool" />
-        <SettingsComponent v-show="settingsBool" />
-        <YourDogsComponent v-show="yourDogsBool" /-->
-    </div>
-    <!--/div-->
   </div>
 </template>
 
 <script>
-// import AddDogComponent from '@/components/AddDogComponent.vue';
-// import SettingsComponent from '@/components/SettingsComponent.vue';
-// import YourDogsComponent from '@/components/YourDogsComponent.vue';
-
 export default {
   data() {
     return {
@@ -53,10 +42,6 @@ export default {
   -moz-border-radius: 8px 8px;
   border-radius: 8px 8px;
   background-color: lightblue;
-  //-webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-  //-moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-  //box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-  //border: solid 1px #cbc9c9;
 }
 .home-container {
   width: 90%;

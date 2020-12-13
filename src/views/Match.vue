@@ -6,14 +6,16 @@
     <div v-else>
       <MatchLandingComponent />
     </div>
+    <FooterComponent />
   </div>
 </template>
 
 <script>
 import MatchLandingComponent from "@/components/MatchLandingComponent.vue";
 import MatchControllerComponent from "@/components/MatchControllerComponent.vue";
+import FooterComponent from '@/components/FooterComponent.vue';
 export default {
-  components: { MatchLandingComponent, MatchControllerComponent },
+  components: { MatchLandingComponent, MatchControllerComponent, FooterComponent },
   data() {
     return {
       logeado: true
