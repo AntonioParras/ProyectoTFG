@@ -290,4 +290,19 @@ a.button:hover {
     font-size: 12px;
   }
 }
+@media screen and (max-width: 1105px) {
+  .form-box {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 745px) {
+  .form-box {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 565px) {
+  .form-box {
+    width: 100%;
+  }
+}
 </style>

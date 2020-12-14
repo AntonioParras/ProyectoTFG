@@ -13,9 +13,13 @@
 <script>
 import MatchLandingComponent from "@/components/MatchLandingComponent.vue";
 import MatchControllerComponent from "@/components/MatchControllerComponent.vue";
-import FooterComponent from '@/components/FooterComponent.vue';
+import FooterComponent from "@/components/FooterComponent.vue";
 export default {
-  components: { MatchLandingComponent, MatchControllerComponent, FooterComponent },
+  components: {
+    MatchLandingComponent,
+    MatchControllerComponent,
+    FooterComponent
+  },
   data() {
     return {
       logeado: true

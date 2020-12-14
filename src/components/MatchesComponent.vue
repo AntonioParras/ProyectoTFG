@@ -1,51 +1,80 @@
 <template>
-    <div>
-        <div class="match-matches-container">
-            <form @submit.prevent>
+  <div>
+    <div class="match-matches-container">
+      <form @submit.prevent>
         <label class="icon"><i class="fas fa-dog"></i></label>
         <select v-model="perroId" required>
-          <option v-for="perro in perrosMatch" :key="perro.id" :value="perro.id">{{
+          <option v-for="perro in perrosMatch" :key="perro.id">{{
             perro.nombre
           }}</option>
         </select>
       </form>
 
-        <div v-for="perro in perrosMatch" :key="perro" class="match-matches-container-card">
-            <div><img :src="perroSeleccionado.foto" alt=""><p>Nombre : Draco</p><p>Raza : Beagle</p><p>Edad : 3</p><p>Sexo : Macho</p><p>Peso : 21kg</p>
-            <p>Descripción: Es muy jugueton</p><p class="mg-b">Número dueño: <i class="fas fa-phone"></i>123456789</p></div>
+      <div>
+        <div
+          v-for="(perro1, index1) in perrosMatch"
+          :key="index1"
+          class="match-matches-container-card"
+        >
+          <img :src="perroSeleccionado.foto" alt="" />
+          <p>Nombre : Draco</p>
+          <p>Raza : Beagle</p>
+          <p>Edad : 3</p>
+          <p>Sexo : Macho</p>
+          <p>Peso : 21kg</p>
+          <p>Descripción: Es muy jugueton</p>
+          <p class="mg-b">
+            Número dueño: <i class="fas fa-phone"></i>123456789
+          </p>
         </div>
-        <div v-for="perro in perrosMatch" :key="perro" class="infocardContainer">
-  <div id="main">
-    <img :src="perroSeleccionado.foto">
-  </div>
-  <div id="textbois">
-      <h3>Draco |  Beagle  |  Macho</h3>
-      <h4>3 años | 21 kg | Jugueton</h4>
-      <h4>Número dueño: 123456789</h4>
-  </div>
-</div>
+      </div>
+
+      <div
+        v-for="(perro, index) in perrosMatch"
+        :key="index"
+        class="infocardContainer"
+      >
+        <div class="main">
+          <img :src="perroSeleccionado.foto" />
         </div>
+        <div class="textbois">
+          <h3>Draco | Beagle | Macho</h3>
+          <h4>3 años | 21 kg | Jugueton</h4>
+          <h4>Número dueño: 123456789</h4>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                      perrosMatch: [
+export default {
+  data() {
+    return {
+      perrosMatch: [
         { id: 1, nombre: "Alfredo" },
         { id: 2, nombre: "Draco" }
       ],
-                perroSeleccionado : {id:'',idUsu:'',nombre:'',raza:'',sexo:'',edad:'',peso:'',descripcion:'',foto:require('../assets/modelo_match/Draco.jpg')},
-                perroId:''
-            }
-        }
-    }
+      perroSeleccionado: {
+        id: "",
+        idUsu: "",
+        nombre: "",
+        raza: "",
+        sexo: "",
+        edad: "",
+        peso: "",
+        descripcion: "",
+        foto: require("../assets/modelo_match/Draco.jpg")
+      },
+      perroId: ""
+    };
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 .mg-b {
-    padding-bottom:20px;
+  padding-bottom: 20px;
 }
 .match-matches-container {
   margin: 20px auto;
@@ -79,22 +108,21 @@
     }
   }
   &-card {
-    display:none;
-    border-radius:10px;
+    display: none;
+    border-radius: 10px;
     margin-left: 25%;
     margin-top: 5%;
     height: 100%;
-    width:50%;
+    width: 50%;
     background: #fff;
     img {
       height: 150px;
       width: 150px;
       border-radius: 10px;
-      margin-top:20px;
-      
+      margin-top: 20px;
     }
     p {
-        font-family: "Raleway", sans-serif;
+      font-family: "Raleway", sans-serif;
     }
   }
 }
@@ -115,11 +143,13 @@
 }
 
 .infocardContainer * {
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
   font-weight: 300;
 }
 h2 {
-  font-weight: 600; font-style: italic; font-family: "Fira Sans Condensed", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-family: "Fira Sans Condensed", sans-serif;
 }
 a {
   text-decoration: none;
@@ -135,10 +165,13 @@ a:hover {
   height: 200px;
   width: 200px;
   border-radius: 100px;
-  background: rgb(0,159,255);
-  background: linear-gradient(121deg, rgba(255,255,255,0) 13%, rgba(0,159,255,1) 100%);
-  transition: all 500ms ease-in;
-  transition-delay: 1s;
+  background: rgb(0, 159, 255);
+  background: linear-gradient(
+    121deg,
+    rgba(255, 255, 255, 0) 13%,
+    rgba(0, 159, 255, 1) 100%
+  );
+  transition: all 1s ease-in;
   margin: auto;
   margin-top: 100px;
   --margin-top: 100px;
@@ -150,7 +183,7 @@ a:hover {
 }
 
 .infocardContainer div {
-  text-color: white;
+  color: white;
   flex-shrink: 1;
   width: 100%;
   --background-color: green;
@@ -165,20 +198,19 @@ a:hover {
   white-space: nowrap;
   width: 0;
   height: auto;
-  transition: all 450ms ease-in;
-  transition-delay: 1s;
+  transition: all 1s ease-in;
 }
-.infocardContainer:hover div *{
+.infocardContainer:hover div * {
   --background-color: purple;
   display: flex;
   visibility: visible;
   transition: all 1s ease-out;
-  transition-delay: 500ms;
   width: 100%;
   height: auto;
 }
 
-.infocardContainer #main, .infocardContainer #main img{
+.infocardContainer .main,
+.infocardContainer .main img {
   --background-color: red;
   height: 200px;
   width: 200px;
@@ -187,57 +219,45 @@ a:hover {
   flex-shrink: 0;
   object-fit: cover;
 }
-.infocardContainer #main img{
+.infocardContainer .main img {
   height: 180px;
   width: 180px;
   transition: none;
   display: float;
   position: relative;
   border: 10px solid white;
-  margin: 0 0 0 0; padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }
-.infocardContainer #textbois {
+.infocardContainer .textbois {
   position: relative;
 }
-.infocardContainer #textbois #hotlinks {
-  max-width: 60%;
-  max-height: 30px;
-  
-  --background-color: white;
-  position:absolute;
-  bottom: 5px;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 13px;
-}
-.infocardContainer #textbois #hotlinks * {
-  background-color: white;
-  max-width: 30px;
-  --margin: 0 1px 0 1px;
-  border-radius: 25px;
-}
+
 @media screen and (max-width: 426px) {
-    .match-matches-container{
-        &-card{
-            display:block;
-            img{
-                width:90%;
-            }
-        }
+  .match-matches-container {
+    &-card {
+      display: block;
+      img {
+        width: 90%;
+      }
     }
-    .infocardContainer, .main, .textbois {
-        display:none;
-    }
+  }
+  .infocardContainer,
+  .main,
+  .textbois {
+    display: none;
+  }
 }
 @media screen and (max-width: 582px) {
-
-    .infocardContainer, .main, .textbois {
-        display:none;
+  .infocardContainer,
+  .main,
+  .textbois {
+    display: none;
+  }
+  .match-matches-container {
+    &-card {
+      display: block;
     }
-        .match-matches-container{
-        &-card{
-            display:block;
-        }
-    }
+  }
 }
 </style>

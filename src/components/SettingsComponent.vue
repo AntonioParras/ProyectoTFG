@@ -370,30 +370,25 @@ a.button:hover {
   -moz-box-shadow: none;
   box-shadow: none;
 }
-.home-container,
-.home-window {
-  margin: 20px auto;
-  -webkit-border-radius: 8px 8px;
-  -moz-border-radius: 8px 8px;
-  border-radius: 8px 8px;
-  background-color: lightblue;
-  //-webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-  //-moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-  //box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-  //border: solid 1px #cbc9c9;
+
+@media screen and (max-width: 769px) {
+  .form-box {
+    width: 80%;
+    h2 {
+      font-size: 16px;
+    }
+
+    .btn {
+      font-size: 16px;
+    }
+  }
 }
-.home-container {
-  width: 90%;
-  height: 100%;
-  min-height: 1000px;
-  border: solid 1px #cbc9c9;
-  -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-  -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-}
-@media screen and (max-width: 426px) {
-  .btn {
-    font-size: 1vw;
+@media screen and (max-width: 560px) {
+  .form-box {
+    width: 100%;
+    h2 {
+      font-size: 16px;
+    }
   }
 }
 @media screen and (max-width: 1201px) {

@@ -12,14 +12,19 @@
       <div class="match-play-container-card">
         <div><img :src="perroActual.foto" alt="" /></div>
         <div class="match-play-container-card-btn">
-        <div class="match-play-container-card-info">
-          <p>{{perroActual.nombre}}, {{perroActual.edad}}</p>
-          <br />
-          <p>{{perroActual.raza}}, {{perroActual.sexo}}, {{perroActual.peso}}kg</p>
-          <br />
-          <p>{{perroActual.descripcion}}</p>
-          <button class="btn btn-dis"><i class="fas fa-heart-broken"></i></button><button class="btn btn-like"><i class="fas fa-heart"></i></button>
-        </div>
+          <div class="match-play-container-card-info">
+            <p>{{ perroActual.nombre }}, {{ perroActual.edad }}</p>
+            <br />
+            <p>
+              {{ perroActual.raza }}, {{ perroActual.sexo }},
+              {{ perroActual.peso }}kg
+            </p>
+            <br />
+            <p>{{ perroActual.descripcion }}</p>
+            <button class="btn btn-dis">
+              <i class="fas fa-heart-broken"></i></button
+            ><button class="btn btn-like"><i class="fas fa-heart"></i></button>
+          </div>
         </div>
       </div>
     </div>
@@ -35,7 +40,17 @@ export default {
         { id: 2, nombre: "Draco" }
       ],
       perroId: "",
-      perroActual: {id:1,idUsu:1,nombre:'Draco',edad:3,raza:'Beagle',peso:21,sexo:'Macho',foto:require("../assets/modelo_match/Draco.jpg"),descripcion:'Es jugueton'}
+      perroActual: {
+        id: 1,
+        idUsu: 1,
+        nombre: "Draco",
+        edad: 3,
+        raza: "Beagle",
+        peso: 21,
+        sexo: "Macho",
+        foto: require("../assets/modelo_match/Draco.jpg"),
+        descripcion: "Es jugueton"
+      }
     };
   },
   methods: {}
@@ -43,7 +58,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-:focus{outline:none}
+:focus {
+  outline: none;
+}
 .match-play-container {
   margin: 20px auto;
   -webkit-border-radius: 8px 8px;
@@ -126,14 +143,14 @@ export default {
   color: #2c2c2c;
   cursor: pointer;
   font-size: 16px;
-  padding:10px;
+  padding: 10px;
   border: 0;
   transition: all 0.5s;
   border-radius: 10px;
   width: 40%;
   position: relative;
   margin-bottom: 20px;
-  margin-left:5px;
+  margin-left: 5px;
 
   &-dis:hover {
     background: red;
@@ -147,7 +164,7 @@ export default {
       color: #ffffff;
     }
   }
-    &-like:hover {
+  &-like:hover {
     background: green;
     transition: all 0.5s;
     border-radius: 10px;
@@ -170,18 +187,14 @@ a.button:hover {
 }
 
 @media screen and (max-width: 769px) {
-
-    .match-play-container-card {
-        width:50%;
-    }
-
+  .match-play-container-card {
+    width: 50%;
+  }
 }
 
 @media screen and (max-width: 426px) {
-
-    .match-play-container-card {
-        width:50%;
-    }
-
+  .match-play-container-card {
+    width: 50%;
+  }
 }
 </style>

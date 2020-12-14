@@ -1,17 +1,17 @@
 <template>
   <div>
-      <MatchControllerComponent />
-      <MatchesComponent />
-      <FooterComponent />
+    <MatchControllerComponent />
+    <MatchesComponent />
+    <FooterComponent />
   </div>
 </template>
 
 <script>
-import MatchControllerComponent from '@/components/MatchControllerComponent.vue';
-import MatchesComponent from '@/components/MatchesComponent.vue';
-import FooterComponent from '@/components/FooterComponent.vue';
+import MatchControllerComponent from "@/components/MatchControllerComponent.vue";
+import MatchesComponent from "@/components/MatchesComponent.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
 export default {
-    components: { MatchesComponent, MatchControllerComponent, FooterComponent }
+  components: { MatchesComponent, MatchControllerComponent, FooterComponent }
 };
 </script>
 
