@@ -14,13 +14,19 @@
           ><button class="create-btn">Crear cuenta</button></router-link
         >
       </div>
-      <img class="logo-img" src="../assets/logo-demo-igca.png" />
+      <img class="logo-img" :src="logo" />
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      logo: require("../assets/LogoTFG.png")
+    }
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -29,13 +35,13 @@ h1 {
 }
 .logo-img {
   margin-top: 2%;
-  width: 300px;
-  height: 300px;
+  width: 40%;
+  height: 100%;
 }
 .landingContent {
   font-family: "Raleway", sans-serif;
   background-color: white;
-  height: 800px;
+  height: 100%;
   border-radius: 10px;
   padding-top: 5%;
 

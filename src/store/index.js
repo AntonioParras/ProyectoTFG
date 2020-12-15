@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: null
+    user: null,
+    razas: null
   },
   mutations: {
     SET_USER_DATA(state, userData) {
@@ -16,7 +17,10 @@ export default new Vuex.Store({
     CLEAR_USER_DATA() {
       localStorage.removeItem("user");
       location.reload();
-    }
+    } /*
+    GUARDAR_RAZAS(state, razas ) {
+      localStorage.setItem('razas',JSON.stringify(razas));
+    }*/
   },
   actions: {
     login({ commit }, credentials) {
@@ -28,7 +32,12 @@ export default new Vuex.Store({
     },
     logout({ commit }) {
       commit("CLEAR_USER_DATA");
-    }
+    } /*,
+    obtenerRazas({ commit }) {
+      return axios
+                .get('http://localhost:8080/api/razas')
+                .then(response => commit('GUARDAR_RAZAS',response.data))
+    } */
   },
   modules: {},
   getters: {
