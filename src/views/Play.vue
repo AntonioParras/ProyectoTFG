@@ -15,6 +15,11 @@ export default {
   components: { PlayComponent, MatchControllerComponent, FooterComponent },
   computed: {
     ...authComputed
+  },
+  created() {
+    if (!this.loggedIn) {
+      this.$router.push("/");
+    }
   }
 };
 </script>
