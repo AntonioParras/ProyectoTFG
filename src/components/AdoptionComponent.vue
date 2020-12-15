@@ -42,8 +42,8 @@ export default {
       foto: require("../assets/modelo_match/Draco.jpg"),
       adopciones: [
         { id: 1, nombre: "Draco", contenido: "en adopcion muy bueno" },
-        { id: 2, nombre: "Alfredo", contenido: "esta gordo pero es bueno" },
-        { id: 3, nombre: "Alfredo", contenido: "esta gordo pero es bueno" }
+        { id: 2, nombre: "Alfredo", contenido: "eses bueno" },
+        { id: 3, nombre: "Alfredo", contenido: "espero es bueno" }
       ],
       comentarios: [
         {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="menu-bar">
-      <ul v-if="!logeado">
+      <ul v-if="!loggedIn">
         <li v-for="(option, index) in menuOptionsNoLog" :key="index">
           <router-link class="router-link" :to="option.name">{{
             option.name
@@ -14,7 +14,7 @@
             option.name
           }}</router-link>
         </li>
-        <li><i :class="iconoLogOut"></i></li>
+        <li @click="logout"><i :class="iconoLogOut"></i></li>
       </ul>
     </nav>
     <router-view></router-view>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { authComputed } from "../store/helpers.js";
 export default {
   data() {
     return {
@@ -40,6 +41,14 @@ export default {
       logeado: false,
       iconoLogOut: "fas fa-power-off"
     };
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    }
+  },
+  computed: {
+    ...authComputed
   }
 };
 </script>

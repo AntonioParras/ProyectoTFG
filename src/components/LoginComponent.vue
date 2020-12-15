@@ -2,13 +2,22 @@
   <div class="login-container">
     <div class="login">
       <p class="header-login">Inicia sesión</p>
-      <form class="login-form" action="">
-        <i class="fas fa-user"></i
-        ><input type="text" placeholder="Introduce tu usuario" /><br /><br />
+      <form class="login-form" @submit.prevent="login">
+        <i class="fas fa-envelope"></i
+        ><input
+          type="text"
+          v-model="email"
+          placeholder="Introduce tu email"
+        /><br /><br />
         <i class="fas fa-lock"></i
-        ><input type="password" placeholder="Introduce tu contraseña" /><br />
+        ><input
+          type="password"
+          v-model="password"
+          placeholder="Introduce tu contraseña"
+        /><br />
+        <button type="submit" class="login-btn">Iniciar sesión</button>
       </form>
-      <button class="login-btn">Iniciar sesión</button>
+
       <p class="redirect">
         ¿No tienes cuenta? Crea una
         <router-link to="/sign_up">aquí</router-link>
@@ -18,7 +27,27 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    login() {
+      console.log("as");
+      this.$store
+        .dispatch("login", {
+          email: this.email,
+          password: this.password
+        })
+        .then(() => {
+          this.$router.push("/home");
+        });
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

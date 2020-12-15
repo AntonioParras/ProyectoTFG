@@ -3,7 +3,7 @@
     <div class="form-box">
       <h1>Regístrate</h1>
 
-      <form>
+      <form @submit.prevent="comprobarDatos">
         <hr />
         <label class="icon" for="name"><i class="fas fa-envelope"></i></label>
         <input
@@ -38,37 +38,106 @@
           placeholder="Contraseña"
           required
         />
-        <button @click="print" class="create-btn">Crea tu cuenta</button>
+        <button type="submit" class="create-btn">
+          Crea tu cuenta
+        </button>
+        <div v-show="errors.length != 0">
+          <p class="error" v-for="error in errors" :key="error">{{ error }}</p>
+        </div>
+        <div v-show="success">
+          <p class="success">Te has registrado con éxito.</p>
+        </div>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
       email: "",
       nombre: "",
       movil: "",
-      password: ""
+      password: "",
+      errors: [],
+      success: false,
+      usuario: ""
     };
   },
   methods: {
-    print() {
-      console.log("Email:" + this.email + "\nNombre: " + this.nombre);
+    comprobarDatos() {
+      this.errors = [];
+      this.success = false;
+      if (this.email.length != 0) {
+        let emailTest = false;
+        for (let index = 0; index < this.email.length; index++) {
+          if (this.email.charAt(index) == "@") {
+            emailTest = true;
+          }
+        }
+        if (emailTest == false) {
+          this.errors.push("*-Introduce un email válido.");
+        }
+      }
+      if (this.movil.length != 9) {
+        this.errors.push(
+          "*-Introduce un número de teléfono válido(tiene que contener 9 dígitos)"
+        );
+      }
+      if (this.password.length < 6) {
+        this.errors.push(
+          "*-La contraseña es demasiado corta, introduce al menos 6 carácteres."
+        );
+      }
+      if (this.errors.length == 0) {
+        this.registrarUsuario();
+        console.log(this.usuario);
+        axios.post("http://localhost:8080/api/register", {
+          nombre: this.usuario.nombre,
+          password: this.usuario.password,
+          telefono: this.usuario.telefono,
+          email: this.usuario.email,
+          tipo: this.usuario.tipo,
+          created_At: this.usuario.created_at,
+          updated_At: this.usuario.updated_at
+        });
+        this.success = true;
+        location.reload();
+      }
+    },
+    registrarUsuario() {
+      var fechaActual = new Date().toJSON().slice(0, 10);
+      this.usuario = {
+        nombre: this.nombre,
+        password: this.password,
+        email: this.email,
+        telefono: this.movil,
+        tipo: "usuario",
+        created_at: fechaActual,
+        updated_at: fechaActual
+      };
+      JSON.parse(JSON.stringify(this.usuario));
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.success {
+  color: green;
+}
+.error {
+  color: red;
+}
 :focus {
   outline: none;
 }
 
 input,
-h1 {
+h1,
+p {
   font-family: "Raleway", sans-serif;
   font-size: 16px;
   color: #4c4c4c;
@@ -86,7 +155,7 @@ h1 {
 .form-box {
   margin: 20px auto;
   width: 343px;
-  height: 464px;
+  height: 100%;
   -webkit-border-radius: 8px/7px;
   -moz-border-radius: 8px/7px;
   border-radius: 8px/7px;
@@ -155,6 +224,7 @@ input[type="password"] {
   width: auto;
   position: relative;
   min-width: 250px;
+  margin-bottom: 30px;
 
   &::after {
     content: "\f599";

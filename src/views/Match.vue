@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="logeado">
+    <div v-if="loggedIn">
       <MatchControllerComponent />
     </div>
     <div v-else>
@@ -14,16 +14,15 @@
 import MatchLandingComponent from "@/components/MatchLandingComponent.vue";
 import MatchControllerComponent from "@/components/MatchControllerComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
+import { authComputed } from "../store/helpers.js";
 export default {
   components: {
     MatchLandingComponent,
     MatchControllerComponent,
     FooterComponent
   },
-  data() {
-    return {
-      logeado: true
-    };
+  computed: {
+    ...authComputed
   }
 };
 </script>
