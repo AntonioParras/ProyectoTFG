@@ -3,7 +3,7 @@
     <div
       class="container-dogs"
       v-for="(perro, index) in listadoPerros"
-      :key="index"
+      :key="perro.id_raza"
     >
       <div class="dog-card">
         <img class="dog-img" :src="listadoFotos[index]" alt="" />
@@ -12,7 +12,12 @@
         <h3>Edad:</h3>
         <input type="number" disabled :value="perro.edad" />
         <h3>Raza:</h3>
-        <input type="text" disabled :value="perro.raza" />
+        <input
+          type="text"
+          disabled
+          v-if="perro.id_raza == razas[perro.id_raza - 1].id"
+          :value="razas[perro.id_raza - 1].nombre"
+        />
         <h3>Peso:</h3>
         <input type="number" v-model="perro.peso" />
         <p>kg</p>
@@ -33,33 +38,18 @@
 </template>
 
 <script>
+import axios from "axios";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
-      listadoPerros: [
-        {
-          nombre: "Alfredo",
-          edad: 12,
-          raza: "Pitbull",
-          sexo: "Hembra",
-          peso: 57,
-          descripcion:
-            "Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien"
-        },
-        {
-          nombre: "Alfredo",
-          edad: 12,
-          raza: "Pitbull",
-          sexo: "Hembra",
-          peso: 42,
-          descripcion:
-            "Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien Esta bien"
-        }
-      ],
+      listadoPerros: [],
+      listadoPerrosAux: "",
       listadoFotos: [],
       datosUpdate: [],
       perroDelete: [],
-      errors: []
+      errors: [],
+      usuario: null
     };
   },
   methods: {
@@ -79,16 +69,40 @@ export default {
     guardarDatosUpdate(perro) {
       this.datosUpdate.push(perro);
       console.log(this.datosUpdate);
+      axios.put("http://localhost:8080/api/getPerros", {
+        id: parseInt(this.datosUpdate[0].id),
+        peso: parseInt(this.datosUpdate[0].peso),
+        descripcion: this.datosUpdate[0].descripcion
+      });
     },
     guardarPerroDelete(index) {
       this.perroDelete.push(this.listadoPerros[index]);
       console.log(this.perroDelete);
+      axios.delete("http://localhost:8080/api/getPerros", {
+        data: {
+          id: parseInt(this.perroDelete[0].id)
+        }
+      });
+    },
+    getPerros() {
+      axios
+        .post("http://localhost:8080/api/getPerros", {
+          id_usuario: this.$store.state.user[0].id
+        })
+        .then(response => {
+          this.listadoPerros = response.data;
+        });
     }
+  },
+  computed: {
+    ...mapState(["razas"])
   },
   created: function() {
     var foto = require("../assets/Alfredo.png");
     this.listadoFotos.push(foto);
     this.listadoFotos.push(foto);
+    this.getPerros();
+    this.$store.dispatch("obtenerRazas");
   }
 };
 </script>

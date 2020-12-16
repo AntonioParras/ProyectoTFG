@@ -4,125 +4,136 @@
       <div class="settings-usuario">
         <h2>Ajustes de usuario</h2>
         <hr />
-        <label class="icon"><i class="fas fa-user"></i></label>
-        <input
-          v-model="nombre"
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          required
-        />
-        <label class="icon"><i class="fas fa-lock"></i></label>
-        <input
-          v-model="password"
-          type="password"
-          name="name"
-          placeholder="Contraseña"
-          required
-        />
-        <label class="icon"><i class="fas fa-envelope"></i></label>
-        <input
-          v-model="email"
-          type="email"
-          name="name"
-          placeholder="Email"
-          required
-        />
-        <label class="icon" for="name"><i class="fas fa-phone"></i></label>
-        <input
-          v-model="movil"
-          type="text"
-          name="name"
-          placeholder="Número de teléfono"
-          required
-        />
-        <label class="icon"><i class="fas fa-camera"></i></label>
-        <input type="file" name="name" required />
+        <form @submit.prevent="comprobarDatosUsuario">
+          <label class="icon"><i class="fas fa-user"></i></label>
+          <input
+            v-model="nombre"
+            type="text"
+            name="name"
+            placeholder="Nombre"
+            required
+          />
+          <label class="icon"><i class="fas fa-lock"></i></label>
+          <input
+            v-model="password"
+            type="password"
+            name="name"
+            placeholder="Contraseña"
+            required
+          />
+          <label class="icon"><i class="fas fa-envelope"></i></label>
+          <input
+            v-model="email"
+            type="email"
+            name="name"
+            placeholder="Email"
+            required
+          />
+          <label class="icon" for="name"><i class="fas fa-phone"></i></label>
+          <input
+            v-model="movil"
+            type="text"
+            name="name"
+            placeholder="Número de teléfono"
+            required
+          />
+          <label class="icon"><i class="fas fa-camera"></i></label>
+          <input type="file" name="name" required />
 
-        <button @click="comprobarDatosUsuario" class="btn">
-          Modificar datos
-        </button>
+          <button type="submit" class="btn">
+            Modificar datos
+          </button>
+        </form>
         <div v-if="errors.lengt != 0">
           <p v-for="error in errors" :key="error">{{ error }}</p>
+        </div>
+        <div v-if="success">
+          <p class="success">Has cambiado tus datos satisfactoriamente.</p>
         </div>
       </div>
       <br />
       <div class="preferencias-usuario">
         <h2>Preferencias de usuario</h2>
         <hr />
-        <label class="icon"><i class="fas fa-venus-mars"></i></label>
-        <select v-model="sexo" required>
-          <option value="m">Macho</option>
-          <option value="h">Hembra</option>
-          <option value="mh">Ambos</option>
-        </select>
-        <h3>Selecciona hasta 3 razas diferentes</h3>
-        <h4>(Solo es necesario escoger al menos 1 raza)</h4>
-        <label class="icon"><i class="fas fa-dog"></i></label>
-        <select v-model="raza3" required>
-          <option value="m">Macho</option>
-          <option value="h">Hembra</option>
-        </select>
-        <label class="icon"><i class="fas fa-dog"></i></label>
-        <select v-model="raza1" required>
-          <option value="m">Macho</option>
-          <option value="h">Hembra</option>
-        </select>
-        <label class="icon"><i class="fas fa-dog"></i></label>
-        <select v-model="raza2" required>
-          <option value="m">Macho</option>
-          <option value="h">Hembra</option>
-        </select>
-        <label class="icon"><i class="fas fa-sort-numeric-up"></i></label>
-        <input
-          v-model="edadMin"
-          type="range"
-          min="1"
-          max="20"
-          step="1"
-          required
-        />
-        <label class="icon"><i class="fas fa-sort-numeric-up-alt"></i></label>
-        <input
-          v-model="edadMax"
-          type="range"
-          min="1"
-          max="20"
-          step="1"
-          required
-        />
-        <h4>Edad : {{ edadMin }} - {{ edadMax }}</h4>
-        <label class="icon"><i class="fas fa-weight"></i></label>
-        <input
-          v-model="pesoMin"
-          type="range"
-          min="1"
-          max="80"
-          step="1"
-          required
-        />
-        <label class="icon"><i class="fas fa-weight"></i></label>
-        <input
-          v-model="pesoMax"
-          type="range"
-          min="1"
-          max="80"
-          step="1"
-          required
-        />
-        <h4>Peso : {{ pesoMin }} - {{ pesoMax }}</h4>
-        <button @click="comprobarPreferenciasUsuario" class="btn">
-          Establecer preferencias
-        </button>
-        <div v-if="errorsPref.lengt != 0">
-          <p v-for="error in errorsPref" :key="error">{{ error }}</p>
-        </div>
+        <form @submit.prevent="comprobarPreferenciasUsuario">
+          <label class="icon"><i class="fas fa-venus-mars"></i></label>
+          <select v-model="sexo" required>
+            <option value="m">Macho</option>
+            <option value="h">Hembra</option>
+          </select>
+          <h3>Selecciona hasta 3 razas diferentes</h3>
+          <h4>(Solo es necesario escoger al menos 1 raza)</h4>
+          <label class="icon"><i class="fas fa-dog"></i></label>
+          <select v-model="raza1" required>
+            <option v-for="r in razas" :key="r.id" :value="r.id">{{
+              r.nombre
+            }}</option>
+          </select>
+          <label class="icon"><i class="fas fa-dog"></i></label>
+          <select v-model="raza2">
+            <option v-for="r in razas" :key="r.id" :value="r.id">{{
+              r.nombre
+            }}</option>
+          </select>
+          <label class="icon"><i class="fas fa-dog"></i></label>
+          <select v-model="raza3">
+            <option v-for="r in razas" :key="r.id" :value="r.id">{{
+              r.nombre
+            }}</option>
+          </select>
+          <label class="icon"><i class="fas fa-sort-numeric-up"></i></label>
+          <input
+            v-model="edadMin"
+            type="range"
+            min="1"
+            max="20"
+            step="1"
+            required
+          />
+          <label class="icon"><i class="fas fa-sort-numeric-up-alt"></i></label>
+          <input
+            v-model="edadMax"
+            type="range"
+            min="1"
+            max="20"
+            step="1"
+            required
+          />
+          <h4>Edad : {{ edadMin }} - {{ edadMax }}</h4>
+          <label class="icon"><i class="fas fa-weight"></i></label>
+          <input
+            v-model="pesoMin"
+            type="range"
+            min="1"
+            max="80"
+            step="1"
+            required
+          />
+          <label class="icon"><i class="fas fa-weight"></i></label>
+          <input
+            v-model="pesoMax"
+            type="range"
+            min="1"
+            max="80"
+            step="1"
+            required
+          />
+          <h4>Peso : {{ pesoMin }} - {{ pesoMax }}</h4>
+          <button type="submit" class="btn">
+            Establecer preferencias
+          </button>
+          <div v-if="errorsPref.lengt != 0">
+            <p v-for="error in errorsPref" :key="error">{{ error }}</p>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -140,17 +151,20 @@ export default {
       raza2: "",
       raza3: "",
       errors: [],
+      success: "",
+      usuario: null,
       errorsPref: [],
+      count: null,
       datosUsuario: {
+        id: "",
         nombre: "",
         password: "",
         email: "",
-        movil: "",
-        foto: ""
+        movil: ""
       },
       preferenciasUsuario: {
         sexo: "",
-        razas: [],
+        razasUsu: [],
         pesoMin: "",
         pesoMax: "",
         edadMin: "",
@@ -196,27 +210,120 @@ export default {
       }
     },
     guardarDatosUsuario() {
+      this.success = false;
+      console.log(this.usuario.id);
       this.datosUsuario.nombre = this.nombre;
       this.datosUsuario.password = this.password;
       this.datosUsuario.email = this.email;
       this.datosUsuario.movil = this.movil;
+      this.$store.dispatch("modificarUsuario", {
+        id: this.usuario[0].id,
+        nombre: this.nombre,
+        password: this.password,
+        email: this.email,
+        telefono: this.movil
+      });
+      if (this.$store.state.user != null) {
+        this.success = true;
+      }
     },
     guardarPreferencias() {
+      this.preferenciasUsuario.razasUsu = [];
       this.preferenciasUsuario.sexo = this.sexo;
-      if (this.raza1 != "") {
-        this.preferenciasUsuario.razas.push(this.raza1);
+      if (this.raza1 != null) {
+        this.preferenciasUsuario.razasUsu.push(this.raza1);
       }
       if (this.raza2 != "") {
-        this.preferenciasUsuario.razas.push(this.raza2);
+        this.preferenciasUsuario.razasUsu.push(this.raza2);
       }
       if (this.raza3 != "") {
-        this.preferenciasUsuario.razas.push(this.raza3);
+        this.preferenciasUsuario.razasUsu.push(this.raza3);
       }
       this.preferenciasUsuario.edadMin = this.edadMin;
       this.preferenciasUsuario.edadMax = this.edadMax;
       this.preferenciasUsuario.pesoMin = this.pesoMin;
       this.preferenciasUsuario.pesoMax = this.pesoMax;
+      if (this.preferenciasUsuario.razasUsu.length == 1) {
+        axios.post("http://localhost:8080/api/sexo", {
+          id_usuario: this.usuario[0].id,
+          sexo: this.preferenciasUsuario.sexo
+        });
+        axios.post("http://localhost:8080/api/edad", {
+          id_usuario: this.usuario[0].id,
+          edad_max: parseInt(this.preferenciasUsuario.edadMax),
+          edad_min: parseInt(this.preferenciasUsuario.edadMin)
+        });
+        axios.post("http://localhost:8080/api/peso", {
+          id_usuario: this.usuario[0].id,
+          peso_max: parseInt(this.preferenciasUsuario.pesoMax),
+          peso_min: parseInt(this.preferenciasUsuario.pesoMin)
+        });
+        axios.post("http://localhost:8080/api/raza", {
+          id_usuario: this.usuario[0].id,
+          id_raza: parseInt(this.preferenciasUsuario.razasUsu[0])
+        });
+      } else if (this.preferenciasUsuario.razasUsu.length == 2) {
+        axios.post("http://localhost:8080/api/sexo", {
+          id_usuario: this.usuario[0].id,
+          sexo: this.preferenciasUsuario.sexo
+        });
+        axios.post("http://localhost:8080/api/edad", {
+          id_usuario: this.usuario[0].id,
+          edad_max: parseInt(this.preferenciasUsuario.edadMax),
+          edad_min: parseInt(this.preferenciasUsuario.edadMin)
+        });
+        axios.post("http://localhost:8080/api/peso", {
+          id_usuario: this.usuario[0].id,
+          peso_max: parseInt(this.preferenciasUsuario.pesoMax),
+          peso_min: parseInt(this.preferenciasUsuario.pesoMin)
+        });
+        axios.post("http://localhost:8080/api/raza", {
+          id_usuario: this.usuario[0].id,
+          id_raza: parseInt(this.preferenciasUsuario.razasUsu[0])
+        });
+        axios.post("http://localhost:8080/api/raza", {
+          id_usuario: this.usuario[0].id,
+          id_raza: parseInt(this.preferenciasUsuario.razasUsu[1])
+        });
+      } else if (this.preferenciasUsuario.razasUsu.length == 3) {
+        axios.post("http://localhost:8080/api/sexo", {
+          id_usuario: this.usuario[0].id,
+          sexo: this.preferenciasUsuario.sexo
+        });
+        axios.post("http://localhost:8080/api/edad", {
+          id_usuario: this.usuario[0].id,
+          edad_max: parseInt(this.preferenciasUsuario.edadMax),
+          edad_min: parseInt(this.preferenciasUsuario.edadMin)
+        });
+        axios.post("http://localhost:8080/api/peso", {
+          id_usuario: this.usuario[0].id,
+          peso_max: parseInt(this.preferenciasUsuario.pesoMax),
+          peso_min: parseInt(this.preferenciasUsuario.pesoMin)
+        });
+        axios.post("http://localhost:8080/api/raza", {
+          id_usuario: this.usuario[0].id,
+          id_raza: parseInt(this.preferenciasUsuario.razasUsu[0])
+        });
+        axios.post("http://localhost:8080/api/raza", {
+          id_usuario: this.usuario[0].id,
+          id_raza: parseInt(this.preferenciasUsuario.razasUsu[1])
+        });
+        axios.post("http://localhost:8080/api/raza", {
+          id_usuario: this.usuario[0].id,
+          id_raza: parseInt(this.preferenciasUsuario.razasUsu[2])
+        });
+      }
     }
+  },
+  created() {
+    this.succes = false;
+    this.usuario = this.$store.state.user;
+    if (this.razas == null) {
+      this.$store.dispatch("obtenerRazas");
+    }
+  },
+  computed: {
+    ...mapState(["razas"])
   }
 };
 </script>
@@ -229,7 +336,9 @@ export default {
 .preferencias-usuario {
   margin: 0 30px;
 }
-
+.success {
+  color: green;
+}
 input,
 h2,
 select,
@@ -265,10 +374,6 @@ h2 {
   -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
   border: solid 1px #cbc9c9;
-}
-
-form {
-  margin: 0 30px;
 }
 
 hr {

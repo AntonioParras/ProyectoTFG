@@ -24,8 +24,8 @@ export default {
   data() {
     return {
       logo: require("../assets/LogoTFG.png")
-    }
-  },
+    };
+  }
 };
 </script>
 

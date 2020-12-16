@@ -65,6 +65,7 @@
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -86,8 +87,7 @@ export default {
         created_at: "",
         updated_at: ""
       },
-      razas: [],
-      usuario: ""
+      usuario: null
     };
   },
   methods: {
@@ -143,18 +143,19 @@ export default {
       });
     },
     obtenerRazas() {
-      /* this.razas = this.$store.dispatch('obtenerRazas');
-      console.log(this.razas => {
+      this.$store.dispatch("obtenerRazas");
 
-      });    */
-      axios
+      /*axios
         .get("http://localhost:8080/api/razas")
-        .then(response => (this.razas = response.data));
+        .then(response => (this.razas = response.data)); */
       this.usuario = this.$store.state.user;
     }
   },
   created() {
     this.obtenerRazas();
+  },
+  computed: {
+    ...mapState(["razas"])
   }
 };
 </script>
