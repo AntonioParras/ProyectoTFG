@@ -3,10 +3,10 @@
     <div
       class="container-dogs"
       v-for="(perro, index) in listadoPerros"
-      :key="perro.id_raza"
+      :key="index"
     >
       <div class="dog-card">
-        <img class="dog-img" :src="listadoFotos[index]" alt="" />
+        <img class="dog-img" :src="listadoPerros[index].foto" alt="" />
         <h3>Nombre:</h3>
         <input type="text" name="nombre" disabled :value="perro.nombre" />
         <h3>Edad:</h3>
@@ -83,6 +83,7 @@ export default {
           id: parseInt(this.perroDelete[0].id)
         }
       });
+      location.reload();
     },
     getPerros() {
       axios

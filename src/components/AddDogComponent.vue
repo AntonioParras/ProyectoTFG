@@ -44,7 +44,13 @@
             required
           />
           <label class="icon"><i class="fas fa-camera"></i></label>
-          <input type="file" name="name" required />
+          <input
+            type="file"
+            name="name"
+            @change="guardarFoto"
+            accept="image/*"
+            required
+          />
           <label class="icon-textarea" for="name">Descripción</label>
           <textarea
             v-model="descripcion"
@@ -75,6 +81,7 @@ export default {
       edad: "",
       peso: "",
       descripcion: "",
+      foto: null,
       errors: [],
       datos: {
         id_usuario: "",
@@ -84,6 +91,8 @@ export default {
         peso: "",
         edad: "",
         descripcion: "",
+        foto: "",
+        fotoperfil: "",
         created_at: "",
         updated_at: ""
       },
@@ -120,6 +129,7 @@ export default {
       }
     },
     guardarDatos() {
+      console.log(this.foto);
       var fechaActual = new Date().toJSON().slice(0, 10);
       this.datos.id_usuario = this.usuario[0].id;
       this.datos.id_raza = this.raza;
@@ -138,6 +148,7 @@ export default {
         peso: parseInt(this.datos.peso),
         edad: parseInt(this.datos.edad),
         descripcion: this.datos.descripcion,
+        foto: this.fotoperfil,
         created_at: this.datos.created_at,
         updated_at: this.datos.updated_at
       });
@@ -149,6 +160,15 @@ export default {
         .get("http://localhost:8080/api/razas")
         .then(response => (this.razas = response.data)); */
       this.usuario = this.$store.state.user;
+    },
+    guardarFoto(event) {
+      this.foto = event.target.files[0];
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        this.fotoperfil = reader.result;
+      });
+      reader.readAsDataURL(this.foto);
+      console.log(this.foto.result);
     }
   },
   created() {
