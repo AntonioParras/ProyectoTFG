@@ -3,10 +3,13 @@
     <div class="match-play-container">
       <form @submit.prevent>
         <label class="icon"><i class="fas fa-dog"></i></label>
-        <select v-model="perroId" required>
-          <option v-for="perro in perros" :key="perro.id" :value="perro.id">{{
-            perro.nombre
-          }}</option>
+        <select v-model="perroUsuarioActual" required>
+          <option
+            v-for="perro in perrosUsuario"
+            :key="perro.id"
+            :value="perro.id"
+            >{{ perro.nombre }}</option
+          >
         </select>
       </form>
       <div v-if="!pruebabool" class="match-play-container-card">
@@ -15,15 +18,18 @@
           <div class="match-play-container-card-info">
             <p>{{ perroActual.nombre }}, {{ perroActual.edad }}</p>
             <br />
-            <p>
-              {{ perroActual.raza }}, {{ perroActual.sexo }},
+            <p v-if="perroActual.sexo == 'm'">
+              {{ razas[perroActual.id_raza - 1].nombre }}, Macho ,
               {{ perroActual.peso }}kg
+            </p>
+            <p v-if="perroActual.sexo == 'h'">
+              {{ perroActual.raza }}, Hembra , {{ perroActual.peso }}kg
             </p>
             <br />
             <p>{{ perroActual.descripcion }}</p>
-            <button class="btn btn-dis">
+            <button @click="nextDog" class="btn btn-dis">
               <i class="fas fa-heart-broken"></i></button
-            ><button @click="pruebas" class="btn btn-like">
+            ><button @click="insertLike" class="btn btn-like">
               <i class="fas fa-heart"></i>
             </button>
           </div>
@@ -35,53 +41,90 @@
 </template>
 
 <script>
+import axios from "axios";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
-      perros: [
+      perrosUsuario: [
         { id: 1, nombre: "Alfredo" },
         { id: 2, nombre: "Draco" }
       ],
-      perroId: "",
-      cont: 0,
+      perroUsuarioActual: "",
+      cont: 1,
       pruebabool: "",
-      perrosBBDD: [
-        {
-          id: 1,
-          idUsu: 1,
-          nombre: "Draco",
-          edad: 3,
-          raza: "Beagle",
-          peso: 21,
-          sexo: "Macho",
-          foto: require("../assets/modelo_match/Draco.jpg"),
-          descripcion: "Es jugueton"
-        },
-        {
-          id: 2,
-          idUsu: 2,
-          nombre: "Manolo",
-          edad: 3,
-          raza: "Beagle",
-          peso: 21,
-          sexo: "Macho",
-          foto: require("../assets/modelo_match/Draco.jpg"),
-          descripcion: "Es jugueton"
-        }
-      ],
-      perroActual: {}
+      perrosFiltrados: null,
+      perroActual: {},
+      idPerroLike: null,
+      idPerroLikeado: null
     };
   },
   methods: {
     pruebas() {
-      if (this.perrosBBDD.length == this.cont) {
+      console.log(this.perroUsuarioActual);
+      if (this.perrosFiltrados.length == this.cont) {
         this.pruebabool = true;
       }
-      this.perroActual = this.perrosBBDD[this.cont];
+      this.perroActual = this.perrosFiltrados[this.cont];
       console.log(this.perroActual);
       console.log(this.cont);
       this.cont++;
+    },
+    getPerros() {
+      axios
+        .post("http://localhost:8080/api/getPerros", {
+          id_usuario: this.$store.state.user[0].id
+        })
+        .then(response => {
+          this.perrosUsuario = response.data;
+        });
+    },
+    getPerrosFiltrados() {
+      axios
+        .post("http://localhost:8080/api/getPerrosFiltrados", {
+          id_usuario: this.$store.state.user[0].id
+        })
+        .then(response => {
+          this.perrosFiltrados = response.data;
+          this.perroActual = this.perrosFiltrados[0];
+        });
+    },
+    insertLike() {
+      if (this.perrosFiltrados.length == this.cont) {
+        this.pruebabool = true;
+      }
+      this.idPerroLike = this.perroUsuarioActual;
+      this.idPerroLikeado = this.perroActual.id;
+      this.perroActual = this.perrosFiltrados[this.cont];
+      /*       console.log(this.perroActual);
+      console.log(this.cont);
+      console.log(this.idPerroLike);
+      console.log(this.idPerroLikeado); */
+      this.cont++;
+      var fechaActual = new Date().toJSON().slice(0, 10);
+      axios.post("http://localhost:8080/api/likes", {
+        id_perroLike: this.idPerroLike,
+        id_perroLikeado: this.idPerroLikeado,
+        created_at: fechaActual
+      });
+    },
+    nextDog() {
+      if (this.perrosFiltrados.length == this.cont) {
+        this.pruebabool = true;
+      }
+      this.idPerroLike = this.perroUsuarioActual;
+      this.idPerroLikeado = this.perroActual.id;
+      this.perroActual = this.perrosFiltrados[this.cont];
+      this.cont++;
     }
+  },
+  computed: {
+    ...mapState(["razas"])
+  },
+  created() {
+    this.getPerros();
+    this.getPerrosFiltrados();
+    this.$store.dispatch("obtenerRazas");
   }
 };
 </script>
