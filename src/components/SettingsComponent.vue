@@ -369,10 +369,10 @@ h2 {
   -webkit-border-radius: 8px/7px;
   -moz-border-radius: 8px/7px;
   border-radius: 8px/7px;
-  background-color: #ebebeb;
+  background: rgba(220, 206, 203, 0.7);
   -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
   -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+  box-shadow: 10px 5px 5px grey;
   border: solid 1px #cbc9c9;
 }
 
@@ -416,13 +416,13 @@ input[type="file"] {
 .icon {
   display: inline-block;
   width: 30px;
-  background-color: #3a57af;
+  background-color: #7ee14c;
   padding: 9px 30px 8px 15px;
   margin-left: 30px;
   -webkit-border-radius: 4px 0px 0px 4px;
   -moz-border-radius: 4px 0px 0px 4px;
   border-radius: 4px 0px 0px 4px;
-  color: white;
+  color: #2b3028;
   -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
   -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
@@ -430,7 +430,7 @@ input[type="file"] {
 }
 .btn {
   font-family: "Raleway", sans-serif;
-  background: #d3d3d3;
+  background: #7ee14c;
   color: #2c2c2c;
   cursor: pointer;
   font-size: 2vw;
@@ -455,7 +455,7 @@ input[type="file"] {
     transform: translate(-50%, -50%);
   }
   &:hover {
-    background: #2b2bff;
+    background: #2b3028;
     transition: all 0.5s;
     border-radius: 10px;
     box-shadow: 0px 6px 15px #0000ff61;

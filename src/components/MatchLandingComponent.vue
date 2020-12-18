@@ -8,7 +8,7 @@
           <br />
           <p>Beagle, Macho, 21kg</p>
           <br />
-          <p>Es muy jugueton</p>
+          <p>Es muy juguetón pero bastante nervioso</p>
         </div>
       </div>
       <div class="msg">
@@ -16,13 +16,16 @@
         <div class="msg-msg"><p>Empieza a dar likes ahora</p></div>
       </div>
       <div class="match-landing-container-card3">
-        <div><img :src="modelo1" alt="" /></div>
+        <div><img :src="modelo2" alt="" /></div>
         <div class="card-info">
-          <p>Draco, 3</p>
+          <p>Betty, 5</p>
           <br />
-          <p>Beagle, Macho, 21kg</p>
+          <p>Beagle, Hembra, 14kg</p>
           <br />
-          <p>Es muy jugueton</p>
+          <p>
+            Es MUY cabezota, lista, poco obediente (porque básicamente es
+            cabezota) y cada vez más cariñosa
+          </p>
         </div>
       </div>
     </div>
@@ -33,7 +36,8 @@
 export default {
   data() {
     return {
-      modelo1: require("../assets/modelo_match/Draco.jpg")
+      modelo1: require("../assets/modelo_match/Draco.jpg"),
+      modelo2: require("../assets/modelo_match/Betty.jpg")
     };
   }
 };
@@ -45,14 +49,14 @@ export default {
   -webkit-border-radius: 8px 8px;
   -moz-border-radius: 8px 8px;
   border-radius: 8px 8px;
-  background-color: lightblue;
+  background: rgba(220, 206, 203, 0.9);
   width: 90%;
   height: 100%;
   min-height: 1000px;
   border: solid 1px #cbc9c9;
   -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
   -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+  box-shadow: 10px 5px 5px grey;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -72,6 +76,8 @@ export default {
       width: 100%;
       border-radius: 10px;
       display: block;
+      max-height: 350px;
+      min-height: 350px;
     }
   }
   p {
@@ -93,7 +99,7 @@ export default {
   }
 }
 .heart {
-  background-color: green;
+  background-color: #7ee14c;
   width: 50px;
   height: 50px;
   position: relative;
@@ -105,7 +111,7 @@ export default {
     content: "";
     width: 50px;
     height: 50px;
-    background-color: green;
+    background-color: #7ee14c;
     position: absolute;
     border-radius: 50%;
   }

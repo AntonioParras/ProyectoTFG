@@ -40,14 +40,17 @@ h1 {
 }
 .landingContent {
   font-family: "Raleway", sans-serif;
-  background-color: white;
+  background: rgba(220, 206, 203, 0.7);
+  box-shadow: 10px 5px 5px grey;
   height: 100%;
+  width: 40%;
+  margin-left: 30%;
   border-radius: 10px;
   padding-top: 5%;
 
   .login-btn {
     font-family: "Raleway", sans-serif;
-    background: #bbff00;
+    background: #7ee14c;
     color: #1d1d1d;
     cursor: pointer;
     font-size: 2em;
@@ -73,7 +76,7 @@ h1 {
     }
 
     &:hover {
-      background: #2b2bff;
+      background: #2b3028;
       transition: all 0.5s;
       border-radius: 10px;
       box-shadow: 0px 6px 15px #0000ff61;
@@ -89,7 +92,7 @@ h1 {
   }
   .create-btn {
     font-family: "Raleway", sans-serif;
-    background: #d3d3d3;
+    background: #7ee14c;
     color: #2c2c2c;
     cursor: pointer;
     font-size: 2em;
@@ -115,7 +118,7 @@ h1 {
     }
 
     &:hover {
-      background: #2b2bff;
+      background: #2b3028;
       transition: all 0.5s;
       border-radius: 10px;
       box-shadow: 0px 6px 15px #0000ff61;
@@ -127,6 +130,24 @@ h1 {
         color: #ffffff;
       }
     }
+  }
+}
+@media screen and (max-width: 955px) {
+  .landingContent {
+    width: 60%;
+    margin-left: 20%;
+  }
+}
+@media screen and (max-width: 680px) {
+  .landingContent {
+    width: 80%;
+    margin-left: 10%;
+  }
+}
+@media screen and (max-width: 680px) {
+  .landingContent {
+    width: 100%;
+    margin-left: 0;
   }
 }
 </style>

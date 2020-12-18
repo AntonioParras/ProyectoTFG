@@ -39,7 +39,12 @@
           </div>
         </div>
       </div>
-      <div v-else>prueba</div>
+      <div v-else>
+        <p>
+          Vaya,parece que ya no hay más perros. Ajusta tus preferencias o
+          recarga la página para volver a jugar.
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -137,19 +142,22 @@ export default {
 :focus {
   outline: none;
 }
+p {
+  font-family: "Raleway", sans-serif;
+}
 .match-play-container {
   margin: 20px auto;
   -webkit-border-radius: 8px 8px;
   -moz-border-radius: 8px 8px;
   border-radius: 8px 8px;
-  background-color: lightblue;
-  width: 90%;
+  background: rgba(220, 206, 203, 0.7);
+  width: 60%;
   height: 100%;
   min-height: 1000px;
   border: solid 1px #cbc9c9;
   -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
   -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+  box-shadow: 10px 5px 5px grey;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -175,7 +183,7 @@ export default {
     margin-top: 5%;
     margin-left: 5%;
     height: 100%;
-    width: 20%;
+    width: 30%;
     background: transparent;
     img {
       height: 80%;
@@ -202,21 +210,21 @@ export default {
 .icon {
   display: inline-block;
   width: 30px;
-  background-color: #3a57af;
+  background-color: #7ee14c;
   padding: 8px 30px 9px 15px;
   margin-left: 30px;
   -webkit-border-radius: 4px 0px 0px 4px;
   -moz-border-radius: 4px 0px 0px 4px;
   border-radius: 4px 0px 0px 4px;
-  color: white;
+  color: #2b3028;
   -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
   -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
   border: solid 0px #cbc9c9;
 }
 .btn {
-  background: #d3d3d3;
-  color: #2c2c2c;
+  background: #2b3028;
+  color: #fff;
   cursor: pointer;
   font-size: 16px;
   padding: 10px;

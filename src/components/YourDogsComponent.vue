@@ -110,12 +110,12 @@ export default {
   outline: none;
 }
 textarea {
-  background: lightgreen;
+  background: rgba(220, 206, 203, 0.8);
   border-radius: 8px;
   border: solid 2px;
   height: 100px;
   resize: none;
-  width: 80%;
+  width: 40%;
   margin-bottom: 10px;
 }
 input {
@@ -123,9 +123,9 @@ input {
   background-position: bottom 2px center;
   background-size: calc(100% - 10px) 2px;
   background-repeat: no-repeat;
-  background-color: lightgreen;
+  background-color: rgba(220, 206, 203, 0.7);
   border-radius: 8px;
-  border-color: white;
+  border-color: rgb(220, 206, 203);
   border: 0;
   padding: 4px;
   margin-left: 5px;
@@ -139,9 +139,12 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 20%;
+  width: 60%;
 }
 .dog-card {
-  background: lightgreen;
+  background: rgba(220, 206, 203, 0.9);
+  box-shadow: 10px 5px 5px grey;
   width: 90%;
   height: 100%;
   margin-bottom: 60px;
@@ -172,8 +175,8 @@ input {
 
 .btn {
   font-family: "Raleway", sans-serif;
-  background: #d3d3d3;
-  color: #2c2c2c;
+  background: #2b3028;
+  color: #fff;
   cursor: pointer;
   font-size: 16px;
   padding: 0.5rem;
@@ -213,6 +216,27 @@ input {
 @media screen and (max-width: 426px) {
   .btn {
     width: 40%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .dog-img {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 425px) {
+  .dog-img {
+    width: 60%;
+  }
+  textarea {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 375px) {
+  input {
+    width: 80%;
+  }
+  .btn {
+    width: 50%;
   }
 }
 </style>

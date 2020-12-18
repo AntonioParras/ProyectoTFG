@@ -20,7 +20,6 @@ export default {
 .home {
   display: grid;
   grid-template-rows: 3fr 1fr;
-  //grid-row: 10px;
 }
 .home-main-menu {
   grid-row: 1/1;

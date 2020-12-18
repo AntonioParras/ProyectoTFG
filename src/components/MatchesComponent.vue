@@ -11,12 +11,15 @@
             >{{ perro.nombre }}</option
           >
         </select>
-        <button @click="getMatches">Ver matches</button>
+        <button @click="getMatches" class="btn">Ver matches</button>
       </form>
 
       <div>
         <div v-if="!hayPerros">
-          No tienes ningun match con este perro.
+          <p>
+            Vaya, parece que no tienes ningún match con el perro seleccionado,
+            comprueba tus preferencias.
+          </p>
         </div>
         <div
           v-for="(perro1, index1) in perrosMatch"
@@ -46,12 +49,9 @@
           <img :src="perro.foto" />
         </div>
         <div class="textbois">
-          <h3 v-if="perro.sexo == 'm'">
-            {{ perro.nombre }} | {{ razas[perro.id_raza - 1].nombre }} | Macho
-          </h3>
-          <h3 v-if="perro.sexo == 'h'">
-            {{ perro.nombre }} | {{ razas[perro.id_raza - 1].nombre }} | Hembra
-          </h3>
+          <h3 v-if="perro.sexo == 'm'">{{ perro.nombre }} | Macho</h3>
+          <h3 v-if="perro.sexo == 'h'">{{ perro.nombre }} | Hembra</h3>
+          <h3>{{ razas[perro.id_raza - 1].nombre }}</h3>
           <h4>{{ perro.edad }} años | {{ perro.peso }} kg</h4>
           <h4>Número dueño: {{ perro.telefono }}</h4>
         </div>
@@ -122,19 +122,22 @@ export default {
 .mg-b {
   padding-bottom: 20px;
 }
+p {
+  font-family: "Raleway", sans-serif;
+}
 .match-matches-container {
   margin: 20px auto;
   -webkit-border-radius: 8px 8px;
   -moz-border-radius: 8px 8px;
   border-radius: 8px 8px;
-  background-color: lightblue;
-  width: 90%;
+  background: rgba(220, 206, 203, 0.7);
+  width: 70%;
   height: 100%;
   min-height: 1000px;
   border: solid 1px #cbc9c9;
   -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
   -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+  box-shadow: 10px 5px 5px grey;
   form {
     margin-top: 5%;
     width: 100%;
@@ -175,19 +178,54 @@ export default {
 .icon {
   display: inline-block;
   width: 30px;
-  background-color: #3a57af;
+  background-color: #7ee14c;
   padding: 8px 30px 9px 15px;
   margin-left: 30px;
   -webkit-border-radius: 4px 0px 0px 4px;
   -moz-border-radius: 4px 0px 0px 4px;
   border-radius: 4px 0px 0px 4px;
-  color: white;
+  color: #2b3028;
   -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
   -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
   border: solid 0px #cbc9c9;
 }
+.btn {
+  font-family: "Raleway", sans-serif;
+  background: #7ee14c;
+  color: #2b3028;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  border: 0;
+  transition: all 0.5s;
+  border-radius: 10px;
+  width: 10%;
+  position: relative;
+  margin-bottom: 20px;
+  margin-left: 5px;
 
+  &:hover {
+    background: #2b3028;
+    transition: all 0.5s;
+    border-radius: 10px;
+    box-shadow: 0px 6px 15px #0000ff61;
+    color: #fff;
+    &::after {
+      opacity: 1;
+      transition: all 0.5s;
+      color: #ffffff;
+    }
+  }
+}
+
+a.button:hover {
+  top: 3px;
+  background-color: #2e458b;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
 .infocardContainer * {
   font-family: "Fira Sans Condensed", sans-serif;
   font-weight: 300;
@@ -197,26 +235,13 @@ h2 {
   font-style: italic;
   font-family: "Fira Sans Condensed", sans-serif;
 }
-a {
-  text-decoration: none;
-}
-a:visited {
-  color: #555566;
-}
-a:hover {
-  text-decoration: underline;
-}
 .infocardContainer {
   display: flex;
   height: 200px;
   width: 200px;
   border-radius: 100px;
   background: rgb(0, 159, 255);
-  background: linear-gradient(
-    121deg,
-    rgba(255, 255, 255, 0) 13%,
-    rgba(0, 159, 255, 1) 100%
-  );
+  background: linear-gradient(121deg, rgba(255, 255, 255, 0) 13%, #7ee14c 100%);
   transition: all 1s ease-in;
   margin: auto;
   margin-top: 100px;
@@ -229,7 +254,7 @@ a:hover {
 }
 
 .infocardContainer div {
-  color: white;
+  color: #2b3028;
   flex-shrink: 1;
   width: 100%;
   --background-color: green;
@@ -240,7 +265,7 @@ a:hover {
   overflow: hidden;
   text-overflow: hidden;
   --background-color: yellow;
-  color: white;
+  color: #2b3028;
   white-space: nowrap;
   width: 0;
   height: auto;
@@ -271,7 +296,7 @@ a:hover {
   transition: none;
   display: float;
   position: relative;
-  border: 10px solid white;
+  border: 10px solid #2b3028;
   margin: 0 0 0 0;
   padding: 0 0 0 0;
 }
@@ -304,6 +329,21 @@ a:hover {
     &-card {
       display: block;
     }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .btn {
+    width: 18%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .btn {
+    width: 25%;
+  }
+}
+@media screen and (max-width: 425px) {
+  .btn {
+    width: 38%;
   }
 }
 </style>

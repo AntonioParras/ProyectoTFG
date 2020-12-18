@@ -10,7 +10,7 @@
       </ul>
       <ul v-else>
         <li v-for="(option, index) in menuOptionsLog" :key="index">
-          <router-link class="router-link" :to="option.name">{{
+          <router-link class="router-link" :to="option.ruta">{{
             option.name
           }}</router-link>
         </li>
@@ -29,14 +29,12 @@ export default {
       menuOptionsNoLog: [
         { name: "Home" },
         { name: "Match" },
-        { name: "Adoption" },
-        { name: "About" }
+        { name: "Adoption" }
       ],
       menuOptionsLog: [
-        { name: "Home" },
-        { name: "Match" },
-        { name: "Adoption" },
-        { name: "About" }
+        { name: "Home", ruta: "/your_dogs" },
+        { name: "Match", ruta: "/play" },
+        { name: "Adoption", ruta: "/adoption" }
       ],
       logeado: false,
       iconoLogOut: "fas fa-power-off"
@@ -61,6 +59,13 @@ export default {
     color: black;
   }
 }
+.router-link {
+  text-decoration: none;
+  color: white;
+  &:hover {
+    color: black;
+  }
+}
 .menu-bar {
   border-radius: 25px;
   height: fit-content;
@@ -77,7 +82,8 @@ export default {
       display: inline-block;
       list-style: none;
       color: white;
-      font-family: sans-serif;
+      font-family: "Raleway", sans-serif;
+      font-size: 20px;
       font-weight: bold;
       padding: 12px 16px;
       margin: 0 8px;

@@ -73,7 +73,7 @@ export default {
       display: inline-block;
       list-style: none;
       color: white;
-      font-family: sans-serif;
+      font-family: "Raleway", sans-serif;
       font-weight: bold;
       padding: 12px 16px;
       margin: 0 10px;
@@ -81,7 +81,7 @@ export default {
       cursor: pointer;
       white-space: nowrap;
       a {
-        padding: 2px;
+        padding: 20px;
       }
       &::before {
         content: " ";

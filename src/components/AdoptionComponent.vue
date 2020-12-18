@@ -64,10 +64,11 @@ export default {
 }
 .container {
   font-family: "Raleway", sans-serif;
-  width: 100%;
+  width: 80%;
   height: 100%;
   position: relative;
   border-radius: 10px;
+  margin-left: 10%;
 }
 .main-content {
   background-color: transparent;
@@ -78,16 +79,17 @@ export default {
 .main-content .panel-wrapper {
   margin: 20px 0;
   box-shadow: 0px 1px 5px #777;
+  box-shadow: 10px 5px 5px grey;
 }
 .panel-wrapper {
-  background: #fff;
+  background: rgba(220, 206, 203, 0.9);
   border-radius: 10px;
 }
 .main-content .panel-wrapper .panel-head {
-  background-color: #00a5f2;
-  color: #fff;
+  background-color: #7ee14c;
+  color: #2b3028;
   padding: 10px 10px;
-  border: 1px solid #00a5f2;
+  border: 1px solid#7EE14C;
   border-radius: 10px 10px 0 0;
 }
 .main-content .panel-wrapper .panel-body {
@@ -97,7 +99,7 @@ export default {
 }
 .btn {
   font-family: "Raleway", sans-serif;
-  background: #d3d3d3;
+  background: #7ee14c;
   color: #2c2c2c;
   cursor: pointer;
   font-size: 2rem;
@@ -110,7 +112,7 @@ export default {
   margin-bottom: 20px;
 
   &:hover {
-    background: #2b2bff;
+    background: #2b3028;
     transition: all 0.5s;
     border-radius: 10px;
     box-shadow: 0px 6px 15px #0000ff61;
@@ -130,8 +132,8 @@ a.button:hover {
   -moz-box-shadow: none;
   box-shadow: none;
 }
-@media only screen and (max-width: 420px) {
-  .main-content {
+@media only screen and (max-width: 425px) {
+  .container {
     width: 100%;
     margin-left: 0;
     z-index: -1;
