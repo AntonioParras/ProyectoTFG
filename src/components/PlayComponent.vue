@@ -12,7 +12,10 @@
           >
         </select>
       </form>
-      <div v-if="!pruebabool" class="match-play-container-card">
+      <div
+        v-if="!pruebabool && perrosFiltrados.length != 0"
+        class="match-play-container-card"
+      >
         <div><img :src="perroActual.foto" alt="" /></div>
         <div class="match-play-container-card-btn">
           <div class="match-play-container-card-info">
@@ -23,7 +26,8 @@
               {{ perroActual.peso }}kg
             </p>
             <p v-if="perroActual.sexo == 'h'">
-              {{ perroActual.raza }}, Hembra , {{ perroActual.peso }}kg
+              {{ razas[perroActual.id_raza - 1].nombre }}, Hembra ,
+              {{ perroActual.peso }}kg
             </p>
             <br />
             <p>{{ perroActual.descripcion }}</p>
@@ -53,7 +57,7 @@ export default {
       perroUsuarioActual: "",
       cont: 1,
       pruebabool: "",
-      perrosFiltrados: null,
+      perrosFiltrados: "",
       perroActual: {},
       idPerroLike: null,
       idPerroLikeado: null

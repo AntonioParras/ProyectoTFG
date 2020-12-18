@@ -4,27 +4,35 @@
       <form @submit.prevent>
         <label class="icon"><i class="fas fa-dog"></i></label>
         <select v-model="perroId" required>
-          <option v-for="perro in perrosMatch" :key="perro.id">{{
-            perro.nombre
-          }}</option>
+          <option
+            v-for="perro in perrosUsuario"
+            :key="perro.id"
+            :value="perro.id"
+            >{{ perro.nombre }}</option
+          >
         </select>
+        <button @click="getMatches">Ver matches</button>
       </form>
 
       <div>
+        <div v-if="!hayPerros">
+          No tienes ningun match con este perro.
+        </div>
         <div
           v-for="(perro1, index1) in perrosMatch"
           :key="index1"
           class="match-matches-container-card"
         >
-          <img :src="perroSeleccionado.foto" alt="" />
-          <p>Nombre : Draco</p>
-          <p>Raza : Beagle</p>
-          <p>Edad : 3</p>
-          <p>Sexo : Macho</p>
-          <p>Peso : 21kg</p>
-          <p>Descripción: Es muy jugueton</p>
+          <img :src="perro1.foto" alt="" />
+          <p>Nombre : {{ perro1.nombre }}</p>
+          <p>Raza : {{ razas[perro1.id_raza - 1].nombre }}</p>
+          <p>Edad : {{ perro1.edad }}</p>
+          <p v-if="perro1.sexo == 'm'">Sexo : Macho</p>
+          <p v-if="perro1.sexo == 'h'">Sexo : Hembra</p>
+          <p>Peso : {{ perro1.peso }}</p>
+          <p>Descripción: {{ perro1.descripcion }}</p>
           <p class="mg-b">
-            Número dueño: <i class="fas fa-phone"></i>123456789
+            Número dueño: <i class="fas fa-phone"></i>{{ perro1.telefono }}
           </p>
         </div>
       </div>
@@ -35,12 +43,17 @@
         class="infocardContainer"
       >
         <div class="main">
-          <img :src="perroSeleccionado.foto" />
+          <img :src="perro.foto" />
         </div>
         <div class="textbois">
-          <h3>Draco | Beagle | Macho</h3>
-          <h4>3 años | 21 kg | Jugueton</h4>
-          <h4>Número dueño: 123456789</h4>
+          <h3 v-if="perro.sexo == 'm'">
+            {{ perro.nombre }} | {{ razas[perro.id_raza - 1].nombre }} | Macho
+          </h3>
+          <h3 v-if="perro.sexo == 'h'">
+            {{ perro.nombre }} | {{ razas[perro.id_raza - 1].nombre }} | Hembra
+          </h3>
+          <h4>{{ perro.edad }} años | {{ perro.peso }} kg</h4>
+          <h4>Número dueño: {{ perro.telefono }}</h4>
         </div>
       </div>
     </div>
@@ -48,13 +61,14 @@
 </template>
 
 <script>
+import axios from "axios";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
-      perrosMatch: [
-        { id: 1, nombre: "Alfredo" },
-        { id: 2, nombre: "Draco" }
-      ],
+      perrosUsuario: null,
+      perrosMatch: null,
+      hayPerros: "",
       perroSeleccionado: {
         id: "",
         idUsu: "",
@@ -68,6 +82,38 @@ export default {
       },
       perroId: ""
     };
+  },
+  methods: {
+    getMatches() {
+      axios
+        .post("http://localhost:8080/api/getMatches", {
+          id: this.perroId
+        })
+        .then(response => {
+          this.perrosMatch = response.data;
+          if (this.perrosMatch.length == 0) {
+            this.hayPerros = false;
+          } else {
+            this.hayPerros = true;
+          }
+        });
+    },
+    getPerros() {
+      axios
+        .post("http://localhost:8080/api/getPerros", {
+          id_usuario: this.$store.state.user[0].id
+        })
+        .then(response => {
+          this.perrosUsuario = response.data;
+        });
+    }
+  },
+  computed: {
+    ...mapState(["razas"])
+  },
+  created() {
+    this.getPerros();
+    this.$store.dispatch("obtenerRazas");
   }
 };
 </script>
