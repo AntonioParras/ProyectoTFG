@@ -99,9 +99,6 @@ export default {
     ...mapState(["razas"])
   },
   created: function() {
-    var foto = require("../assets/Alfredo.png");
-    this.listadoFotos.push(foto);
-    this.listadoFotos.push(foto);
     this.getPerros();
     this.$store.dispatch("obtenerRazas");
   }
@@ -168,9 +165,9 @@ input {
 }
 .dog-img {
   width: 20%;
-  height: 20%;
+  height: 100%;
   margin: 20px;
-  border-radius: 50%;
+  border-radius: 20%;
 }
 
 .btn {

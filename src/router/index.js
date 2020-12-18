@@ -11,6 +11,7 @@ import Settings from "@/views/Settings.vue";
 import YourDogs from "@/views/YourDogs.vue";
 import Play from "@/views/Play.vue";
 import Matches from "@/views/Matches.vue";
+import CreatePost from "@/views/CreatePost.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -61,6 +62,10 @@ const routes = [
   {
     path: "/matches",
     component: Matches
+  },
+  {
+    path: "/create_post",
+    component: CreatePost
   }
 ];
 

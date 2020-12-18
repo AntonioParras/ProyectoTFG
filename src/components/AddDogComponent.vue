@@ -64,6 +64,10 @@
         <div v-if="errors.lengt != 0">
           <p v-for="error in errors" :key="error">{{ error }}</p>
         </div>
+        <p v-if="success" class="success">Has añadido a tu perro con éxito.</p>
+        <p v-if="success == false" class="error">
+          Error al añadir perro. Comprueba los datos introducidos.
+        </p>
       </div>
     </div>
   </div>
@@ -83,6 +87,7 @@ export default {
       descripcion: "",
       foto: null,
       errors: [],
+      success: null,
       datos: {
         id_usuario: "",
         id_raza: "",
@@ -129,7 +134,6 @@ export default {
       }
     },
     guardarDatos() {
-      console.log(this.foto);
       var fechaActual = new Date().toJSON().slice(0, 10);
       this.datos.id_usuario = this.usuario[0].id;
       this.datos.id_raza = this.raza;
@@ -140,18 +144,26 @@ export default {
       this.datos.descripcion = this.descripcion;
       (this.datos.created_at = fechaActual),
         (this.datos.updated_at = fechaActual);
-      axios.post("http://localhost:8080/api/perros", {
-        id_usuario: this.datos.id_usuario,
-        id_raza: this.datos.id_raza,
-        nombre: this.datos.nombre,
-        sexo: this.datos.sexo,
-        peso: parseInt(this.datos.peso),
-        edad: parseInt(this.datos.edad),
-        descripcion: this.datos.descripcion,
-        foto: this.fotoperfil,
-        created_at: this.datos.created_at,
-        updated_at: this.datos.updated_at
-      });
+      axios
+        .post("http://localhost:8080/api/perros", {
+          id_usuario: this.datos.id_usuario,
+          id_raza: this.datos.id_raza,
+          nombre: this.datos.nombre,
+          sexo: this.datos.sexo,
+          peso: parseInt(this.datos.peso),
+          edad: parseInt(this.datos.edad),
+          descripcion: this.datos.descripcion,
+          foto: this.fotoperfil,
+          created_at: this.datos.created_at,
+          updated_at: this.datos.updated_at
+        })
+        .then(response => {
+          if (response.data == 1) {
+            this.success = true;
+          } else {
+            this.success = false;
+          }
+        });
     },
     obtenerRazas() {
       this.$store.dispatch("obtenerRazas");
@@ -193,8 +205,10 @@ p {
   font-size: 16px;
   color: #4c4c4c;
 }
-
-p {
+.success {
+  color: green;
+}
+.error {
   color: red;
 }
 h1 {

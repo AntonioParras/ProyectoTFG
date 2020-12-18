@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: null,
-    razas: null
+    razas: null,
+    adopciones: null
   },
   mutations: {
     SET_USER_DATA(state, userData) {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     MOD_USER_DATA(state, userData) {
       state.user = userData;
       localStorage.setItem("user", JSON.stringify(userData));
+    },
+    GUARDAR_ADOPCIONES(state, adopcionesData) {
+      state.adopciones = adopcionesData;
     }
   },
   actions: {
@@ -48,6 +52,11 @@ export default new Vuex.Store({
         .then(({ data }) => {
           commit("MOD_USER_DATA", data);
         });
+    },
+    getAdopciones({ commit }) {
+      return axios
+        .get("http://localhost:8080/api/adopcion")
+        .then(response => commit("GUARDAR_ADOPCIONES", response.data));
     }
   },
   modules: {},

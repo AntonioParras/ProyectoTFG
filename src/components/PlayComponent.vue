@@ -9,7 +9,7 @@
           }}</option>
         </select>
       </form>
-      <div class="match-play-container-card">
+      <div v-if="!pruebabool" class="match-play-container-card">
         <div><img :src="perroActual.foto" alt="" /></div>
         <div class="match-play-container-card-btn">
           <div class="match-play-container-card-info">
@@ -23,10 +23,13 @@
             <p>{{ perroActual.descripcion }}</p>
             <button class="btn btn-dis">
               <i class="fas fa-heart-broken"></i></button
-            ><button class="btn btn-like"><i class="fas fa-heart"></i></button>
+            ><button @click="pruebas" class="btn btn-like">
+              <i class="fas fa-heart"></i>
+            </button>
           </div>
         </div>
       </div>
+      <div v-else>prueba</div>
     </div>
   </div>
 </template>
@@ -40,20 +43,46 @@ export default {
         { id: 2, nombre: "Draco" }
       ],
       perroId: "",
-      perroActual: {
-        id: 1,
-        idUsu: 1,
-        nombre: "Draco",
-        edad: 3,
-        raza: "Beagle",
-        peso: 21,
-        sexo: "Macho",
-        foto: require("../assets/modelo_match/Draco.jpg"),
-        descripcion: "Es jugueton"
-      }
+      cont: 0,
+      pruebabool: "",
+      perrosBBDD: [
+        {
+          id: 1,
+          idUsu: 1,
+          nombre: "Draco",
+          edad: 3,
+          raza: "Beagle",
+          peso: 21,
+          sexo: "Macho",
+          foto: require("../assets/modelo_match/Draco.jpg"),
+          descripcion: "Es jugueton"
+        },
+        {
+          id: 2,
+          idUsu: 2,
+          nombre: "Manolo",
+          edad: 3,
+          raza: "Beagle",
+          peso: 21,
+          sexo: "Macho",
+          foto: require("../assets/modelo_match/Draco.jpg"),
+          descripcion: "Es jugueton"
+        }
+      ],
+      perroActual: {}
     };
   },
-  methods: {}
+  methods: {
+    pruebas() {
+      if (this.perrosBBDD.length == this.cont) {
+        this.pruebabool = true;
+      }
+      this.perroActual = this.perrosBBDD[this.cont];
+      console.log(this.perroActual);
+      console.log(this.cont);
+      this.cont++;
+    }
+  }
 };
 </script>
 
